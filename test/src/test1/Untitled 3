@@ -1,0 +1,23 @@
+int storeI=0,storeJ=1;
+				 int low = COST[storeI][storeJ];
+				for(int i = 0 ; i < N ; i++){
+					for(int j = 0 ; j < N ; j++){
+						if(COST[i][j] <= low){
+							low = COST[i][j];
+							storeI = i;
+							storeJ = j;
+						}
+					}
+				}
+				if(COST[storeI][storeJ] < COST[storeJ][storeI]){
+						totalCost += COST[storeI][storeJ];
+						COST[storeI][storeJ] = 1001;
+						constKeeper.add(storeI);
+				}
+				else{
+						totalCost += COST[storeJ][storeI];
+						COST[storeJ][storeI] = 1001;
+						constKeeper.add(storeJ);
+				}
+				
+				edgeCtr++;

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="JIC.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$('#radioButtonID').prop("checked", true)(function(){
+	 
+	var source_image = document.getElementById("file"),
+	    compressed_image = document.getElementById("cfile");
+	    
+	var compression_quality =  80;
+	 
+	compressed_image.src = jic.compress(source_image,quality).src; 
+	 
+	var server_endpoint = 'UploadHandler',
+	    server_var_name = 'file',
+	    filename = "new.jpg";
+	    
+	var callback = function(response){ console.log(response); }
+	 
+	jic.upload(compressed_image, server_endpoint, server_var_name, filename, callback);
+	 
+	});
+	</script>
+    <head>
+        <title>File Upload</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <form method="POST" action="UploadHandler" enctype="multipart/form-data" >
+            File:
+            <input type="file" name="file" id="file" /> <br/>
+            Destination:
+            <input type="text" value="/tmp" name="destination"/>
+             <input type="radio" name="type" id=”radioButtonID”/> Compress and upload
+              <input type="submit" value="Upload" name="upload" id="upload" />
+        </form>
+    </body>
+</html>

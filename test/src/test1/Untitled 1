@@ -1,0 +1,35 @@
+int[][] distance = new int[s.length() + 1][t.length() + 1];
+ 
+                for (int i = 0; i <= s.length(); i++)
+                        distance[i][0] = i;
+                for (int j = 1; j <= t.length(); j++)
+                        distance[0][j] = j;
+ 
+                for (int i = 1; i <= s.length(); i++)
+                        for (int j = 1; j <= t.length(); j++)
+                                distance[i][j] = minimum(
+                                                distance[i - 1][j] + 1,
+                                                distance[i][j - 1] + 1,
+                                                distance[i - 1][j - 1]
+                                                                + ((s.charAt(i - 1) == t.charAt(j - 1)) ? 0
+                                                                                : 1));
+ 
+                return distance[s.length()][t.length()];
+                
+                hjdiaceidjafcchdhjacdjjhadjigfhgchadjjjbhcdgffibeh
+                
+                int len = s.length();
+		int mismatch = 0;
+		if(len > t.length())
+		len = t.length();
+		for(int i = 0; i < len; i++)
+		{
+			if(s.charAt(i) != t.charAt(i)){
+				mismatch++;
+			}
+				
+		}
+		mismatch += Math.abs(s.length()-t.length());
+		return mismatch;
+		
+			
